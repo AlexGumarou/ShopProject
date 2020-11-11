@@ -8,15 +8,14 @@ import java.io.PrintWriter;
 
 @WebServlet("/data")
 public class PersonalDataBase extends HttpServlet {
-ListOfThePersons listOfThePersons = new ListOfThePersons();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-        listOfThePersons.addAdmin();
+        //ListOfThePersons.addAdmin();
         try {
-            writer.println("<h1>You account data is:</h1>\n" + listOfThePersons.list.size());
+            writer.println("<h1>You account data is:</h1>\n" + ListOfThePersons.getList());
         } finally {
             writer.close();
         }

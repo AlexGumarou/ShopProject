@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-
 public class PersonalData {
     public String login;
     public String pass;
@@ -42,4 +40,22 @@ public class PersonalData {
         this.surname = surname;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonalData{" +
+                "login='" + login + '\'' +
+                ", pass='" + pass + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", year=" + year +
+                '}';
+    }
 }
