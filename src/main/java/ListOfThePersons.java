@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,11 +14,13 @@ public class ListOfThePersons {
 
     public static void setList(List<PersonalData> list) {
         ListOfThePersons.list = list;
+
     }
 
     public static void addAdmin(){
-        map.put("admin", "admin");
-        list.add(new PersonalData("admin","admin","Alex","Humarou",2018));
+        map.put("A24", "A24");
+        list.add(new PersonalData("A24","A24","Alex","Humarou",
+                LocalDate.now().getDayOfYear()));
     }
     public static void addUsers(String login, String pass, String name, String surname, int year){
         map.put(login, pass);

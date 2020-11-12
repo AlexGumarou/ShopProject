@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/registration")
-public class Registration extends HttpServlet {
+@WebServlet("/registrationIncorrect")
+public class RegistrationIncorrect extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         try {
-            getServletContext().getRequestDispatcher("/RegistrationPage.jsp").forward(request,response);
+            getServletContext().getRequestDispatcher("/RegistrationPageIncorrect.jsp").forward(request,response);
         } finally {
             writer.close();
         }

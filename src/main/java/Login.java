@@ -9,23 +9,31 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/login")
 public class Login extends HttpServlet{
 
+    @Override
+    public void init (){
+        ListOfThePersons.addAdmin();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
 
+        response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-        ListOfThePersons.addAdmin();
 
         try { if (ListOfThePersons.map.containsKey(request.getParameter("login"))
         && ListOfThePersons.map.containsValue(request.getParameter("pass"))){
             response.sendRedirect("/mainWindow");
-        }else { writer.println(ServletsBasic.startPageIncorrectAnswer);
+        }else {
+            response.sendRedirect("/incorrect");
+
         }
         } finally {
             writer.close();
         }
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);

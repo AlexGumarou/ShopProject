@@ -12,12 +12,13 @@ public class PersonalDataBase extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
-        //ListOfThePersons.addAdmin();
-        try {
-            writer.println("<h1>You account data is:</h1>\n" + ListOfThePersons.getList());
-        } finally {
-            writer.close();
+        try (PrintWriter writer = response.getWriter()) {
+            for (int i = 0; i < ListOfThePersons.list.size(); i++) {
+                writer.println(ListOfThePersons.list.get(i).getLogin() + " " +
+                        ListOfThePersons.list.get(i).getPass() + " " +
+                        ListOfThePersons.list.get(i).getName() + " " +
+                        ListOfThePersons.list.get(i).getSurname() + "<br>");
+            }
         }
     }
 
