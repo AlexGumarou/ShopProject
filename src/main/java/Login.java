@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class Login extends HttpServlet{
@@ -17,16 +18,17 @@ public class Login extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-
+        HttpSession session = request.getSession();
+        session.setAttribute("map", ListOfThePersons.map);
         try { if (ListOfThePersons.map.containsKey(request.getParameter("login"))
         && ListOfThePersons.map.containsValue(request.getParameter("pass"))){
+            session.setAttribute("login", request.getParameter("login"));
+            session.setAttribute("pass", request.getParameter("pass"));
             response.sendRedirect("/mainWindow");
         }else {
             response.sendRedirect("/incorrect");
-
         }
         } finally {
             writer.close();
@@ -38,5 +40,4 @@ public class Login extends HttpServlet{
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 }

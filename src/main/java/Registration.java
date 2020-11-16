@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,14 +30,14 @@ public class Registration extends HttpServlet {
             if (!ListOfThePersons.map.containsKey(request.getParameter("login")) &&
                     request.getParameter("login").matches(regExpLogin) &&
                     request.getParameter("pass").matches(regExpPass)) {
-                ListOfThePersons.addUsers(request.getParameter("login"), request.getParameter("pass"),
-                        request.getParameter("name"), request.getParameter("surname"),
-                        LocalDate.now().getDayOfYear());
+
+                ListOfThePersons.addUsersMap(request.getParameter("login"), request.getParameter("pass"));
+                ListOfThePersons.addUsersList(request.getParameter("login"), request.getParameter("pass"),
+                        request.getParameter("name"), request.getParameter("surname"));
                 response.sendRedirect("/");
             } else response.sendRedirect("/registrationIncorrect");
         } finally {
             writer.close();
         }
     }
-
 }

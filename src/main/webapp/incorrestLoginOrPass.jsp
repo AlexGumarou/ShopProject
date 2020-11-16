@@ -21,7 +21,9 @@
 <div style="text-align: center;">
     <p><a href="/registration">Registration</a></p>
 </div>
-
+<div style="text-align: center;">
+    <p><a href="/">back</a></p>
+</div>
 </body>
 </html>
 

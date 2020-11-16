@@ -1,23 +1,27 @@
 <%--
   Created by IntelliJ IDEA.
   User: А
-  Date: 11.11.2020
-  Time: 11:24
+  Date: 12.11.2020
+  Time: 14:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Main Window page</title>
+    <title>Title</title>
 </head>
 <body>
 <div style="text-align: right;">
     <h3>Welcome, <%= session.getAttribute("login") %></h3>
 </div>
+<div style="text-align:center;">
+    <h4>You login is <%= session.getAttribute("login") %></h4>
+    <h4>You pass is <%= session.getAttribute("pass") %></h4>
+    <h4>You name is <%= session.getAttribute("name") %></h4>
+    <h4>You surname is <%= session.getAttribute("surname") %></h4>
+</div>
 <div style="text-align: center;">
-    <h1>You have successful entry</h1>
-    <h2>Have a pleasure using our service :)</h2>
-    <p><a href="/data">Your personal account data</a></p>
+    <p><a href="/mainWindow">back</a></p>
     <p><a href="/">Exit you account</a></p>
 </div>
 </body>

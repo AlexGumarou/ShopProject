@@ -3,9 +3,10 @@ public class PersonalData {
     public String pass;
     public String name;
     public String surname;
-    public int year;
 
-    public PersonalData(String login, String pass, String name, String surname, int year) {
+    public PersonalData(String login, String pass, String name, String surname) {
+    }
+    public PersonalData() {
     }
 
     public String getLogin() {
@@ -40,14 +41,6 @@ public class PersonalData {
         this.surname = surname;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     @Override
     public String toString() {
         return "PersonalData{" +
@@ -55,7 +48,6 @@ public class PersonalData {
                 ", pass='" + pass + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", year=" + year +
                 '}';
     }
 }
