@@ -7,10 +7,11 @@ public class ListOfThePersons {
 
     static Map<String,String> map = new HashMap<>();
     static List<PersonalData> list = new ArrayList<>();
-
+    static final String login = "A24";
+    static final String pass = "A24";
     public static void addAdmin(){
-        map.put("A24", "A24");
-        list.add(new PersonalData("A24","A24", "Alex", "Humarou"));
+        map.put(login, pass);
+        list.add(new PersonalData(login,pass, "Alexey", "Humarou"));
     }
     public static void addUsersMap(String login, String pass){
         map.put(login, pass);

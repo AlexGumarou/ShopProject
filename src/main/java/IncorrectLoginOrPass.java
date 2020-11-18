@@ -10,7 +10,7 @@ public class IncorrectLoginOrPass extends HttpServlet {
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
-        getServletContext().getRequestDispatcher("/incorrestLoginOrPass.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/User/incorrectLoginOrPass.jsp").forward(request,response);
     }
 
     protected void doPost (HttpServletRequest request, HttpServletResponse response)

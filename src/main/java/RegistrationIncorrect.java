@@ -11,17 +11,16 @@ public class RegistrationIncorrect extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         try {
-            getServletContext().getRequestDispatcher("/RegistrationPageIncorrect.jsp").forward(request,response);
+            getServletContext().getRequestDispatcher("/User/registrationPageIncorrect.jsp").forward(request,response);
         } finally {
             writer.close();
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         String regExpLogin = "[a-zA-Z0-9]+";

@@ -20,9 +20,5 @@
 <p><a href="/registration">Registration</a></p>
 </div>
 
-<div style="text-align: center;">
-    <p><a href="/data">Data (temporary url for solving "null" data</a></p>
-</div>
-
 </body>
 </html>

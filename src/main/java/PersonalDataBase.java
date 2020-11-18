@@ -10,9 +10,7 @@ public class PersonalDataBase extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        getServletContext().getRequestDispatcher("/dataPage.jsp").forward(request, response);
-
+        getServletContext().getRequestDispatcher("/User/dataPage.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)

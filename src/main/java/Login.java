@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,28 +15,24 @@ public class Login extends HttpServlet{
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("map", ListOfThePersons.map);
-        try { if (ListOfThePersons.map.containsKey(request.getParameter("login"))
-        && ListOfThePersons.map.containsValue(request.getParameter("pass"))){
-            session.setAttribute("login", request.getParameter("login"));
-            session.setAttribute("pass", request.getParameter("pass"));
+
+        for (int i = 0; i < ListOfThePersons.list.size(); i++){
+            if (ListOfThePersons.list.get(i).getLogin().equals(request.getParameter("login"))
+            && ListOfThePersons.list.get(i).getPass().equals(request.getParameter("pass"))){
+                session.setAttribute("login", ListOfThePersons.list.get(i).getLogin());
+                session.setAttribute("pass", ListOfThePersons.list.get(i).getPass());
+                session.setAttribute("name", ListOfThePersons.list.get(i).getName());
+                session.setAttribute("surname", ListOfThePersons.list.get(i).getSurname());
+            }
+        }
+        if (ListOfThePersons.map.containsKey(request.getParameter("login"))
+                && ListOfThePersons.map.containsValue(request.getParameter("pass"))){
             response.sendRedirect("/mainWindow");
-        }else {
+        } else {
             response.sendRedirect("/incorrect");
         }
-        } finally {
-            writer.close();
-        }
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: А
-  Date: 11.11.2020
-  Time: 11:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,13 +5,14 @@
 </head>
 <body>
 <div style="text-align: right;">
-    <h3>Welcome, <%= session.getAttribute("login") %></h3>
+    <h4>Welcome, <a href="/data"> <%= session.getAttribute("name") %></a></h4>
 </div>
 <div style="text-align: center;">
     <h1>You have successful entry</h1>
     <h2>Have a pleasure using our service :)</h2>
-    <p><a href="/data">Your personal account data</a></p>
     <p><a href="/">Exit you account</a></p>
+    <p><a href="/mainWindowShop">Go to the shop</a></p>
+
 </div>
 </body>
 </html>
