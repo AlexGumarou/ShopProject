@@ -1,3 +1,5 @@
+package login;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +15,4 @@ public class IncorrectLoginOrPass extends HttpServlet {
         getServletContext().getRequestDispatcher("/User/incorrectLoginOrPass.jsp").forward(request,response);
     }
 
-    protected void doPost (HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-        doGet(request,response);
-    }
 }

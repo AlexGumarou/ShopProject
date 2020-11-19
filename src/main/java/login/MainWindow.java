@@ -1,3 +1,5 @@
+package login;
+
 import Goods.GoodsStorage;
 
 import javax.servlet.ServletException;

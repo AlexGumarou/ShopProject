@@ -1,5 +1,5 @@
 package Goods;
-
+//класс товары с полями
 public class Goods {
     private int id;
     private String name;

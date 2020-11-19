@@ -4,11 +4,12 @@
 <form name="test" method="post" action="/login">
     <div style="text-align: center;">
     <h2>First of all you have to enter your Login and Pass</h2>
+        <p>(admin: login: A24, pass: A24)<br>
     <p><b>Enter login:</b><br>
         <input type="text" name="login" size="40">
     </p>
     <p><b>Enter pass:</b><br>
-        <input type="text" name="pass" size="40">
+        <input type="password" name="pass" size="40">
     </p>
     <p><input type="submit" value="Enter point">
     </div>

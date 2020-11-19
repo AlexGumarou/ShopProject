@@ -1,5 +1,5 @@
 package Goods;
-
+//класс-хранилище для товаров и доступ к ним
 import java.util.ArrayList;
 import java.util.List;
 

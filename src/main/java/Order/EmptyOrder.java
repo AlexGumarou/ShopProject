@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+//этот класс, если пользователь ничего не выбрал на главной странице, но нажал кнопку "Add goods"
 @WebServlet("/emptyOrder")
 public class EmptyOrder extends HttpServlet {
     @Override

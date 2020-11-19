@@ -1,3 +1,5 @@
+package login;
+
 public class PersonalData {
     private String login;
     private String pass;
@@ -26,4 +28,13 @@ public class PersonalData {
         return surname;
     }
 
+    @Override
+    public String toString() {
+        return "PersonalData{" +
+                "login='" + login + '\'' +
+                ", pass='" + pass + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
 }
