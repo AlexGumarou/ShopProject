@@ -17,6 +17,7 @@ public class MainWindowShop extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("maxGoods",GoodsStorage.getListOfGoods().size());
         getServletContext().getRequestDispatcher("/Shop/mainWindowStore.jsp").forward(req,resp);
     }
 }

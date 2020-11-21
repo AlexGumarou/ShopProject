@@ -6,14 +6,18 @@
 <body>
 <div style="text-align:center;">
     <h2>This is your personal data</h2>
-    <h4>You login is <%= session.getAttribute("login") %></h4>
-    <h4>You pass is <%= session.getAttribute("pass") %></h4>
-    <h4>You name is <%= session.getAttribute("name") %></h4>
-    <h4>You surname is <%= session.getAttribute("surname") %></h4>
+    <h3>You login is <%= session.getAttribute("login") %></h3>
+    <h3>You pass is <%= session.getAttribute("pass") %></h3>
+    <h3>You name is <%= session.getAttribute("name") %></h3>
+    <h3>You surname is <%= session.getAttribute("surname") %></h3>
+    <h3>You surname is <%= session.getAttribute("address") %></h3>
+    <h3>You surname is <%= session.getAttribute("email") %></h3>
+    <h3>You surname is <%= session.getAttribute("phone") %></h3>
 </div>
 <div style="text-align: center;">
     <p><a href="/mainWindow">Go to the main window</a></p>
     <p><a href="/userStore">Go to the users Storage</a></p>
+    <p><a href="/orderHistory">Go to the history of orders</a></p>
     <p><a href="/">Exit you account</a></p>
 </div>
 </body>

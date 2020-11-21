@@ -16,7 +16,7 @@
         %>
 </div>
 <div style="text-align: center;">
-    <h3>You do not add any goods</h3>
+    <h3>You do not add any Goods</h3>
     <div style="text-align: center;">
         <p><a href="/mainWindowShop">Back to the shop</a></p>
     </div>

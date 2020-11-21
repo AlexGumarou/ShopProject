@@ -1,26 +1,32 @@
 package Goods;
-//класс товары с полями
+
 public class Goods {
     private int id;
     private String name;
     private String description;
     private int quantity;
     private int price;
+    private int idPreOrder;
 
-    public Goods(int id, String name, String description, int quantity, int price) {
+    public Goods(int id, String name, String description, int quantity, int price, int idPreOrder) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+        this.idPreOrder = idPreOrder;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPreOrder() {
+        return idPreOrder;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPreOrder(int idPreOrder) {
+        this.idPreOrder = idPreOrder;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -35,24 +41,12 @@ public class Goods {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     @Override
@@ -63,6 +57,7 @@ public class Goods {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
+                ", idPreOrder=" + idPreOrder +
                 '}';
     }
 }

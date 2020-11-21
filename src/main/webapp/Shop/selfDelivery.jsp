@@ -15,5 +15,11 @@
         }
         %>
 </div>
+<div style="text-align: center;">
+    <h2>You have to take your order by address:</h2><br>
+    Minsk, Pritysky str, some were else...
+    <p><a href="/mainWindowShop">back to the Shop</a></p>
+</div>
+
 </body>
 </html>

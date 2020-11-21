@@ -26,7 +26,8 @@ public class Registration extends HttpServlet {
                 ListOfThePersons.addUsersMap(request.getParameter("login"), request.getParameter("pass"));
 
                 ListOfThePersons.addUsersList(request.getParameter("login"), request.getParameter("pass"),
-                        request.getParameter("name"), request.getParameter("surname"));
+                        request.getParameter("name"), request.getParameter("surname"),
+                        "","","");
 
                 response.sendRedirect("/");
 

@@ -24,7 +24,7 @@ public class ChangeUsers extends HttpServlet {
             if (req.getParameter("button").equals("Delete " + i)) {
                 String login = ListOfThePersons.list.get(i).getLogin();
                 String pass = ListOfThePersons.list.get(i).getPass();
-                ListOfThePersons.map.remove(login, pass);
+                ListOfThePersons.removeUsersMap(login, pass);
                 ListOfThePersons.list.remove(i);
                 resp.sendRedirect("/userStore");
             }

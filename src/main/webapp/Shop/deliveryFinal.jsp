@@ -1,14 +1,19 @@
-<%@ page import="login.ListOfThePersons" %>
+<%@ page import="login.ListOfThePersons" %><%--
+  Created by IntelliJ IDEA.
+  User: А
+  Date: 20.11.2020
+  Time: 10:08
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Main Window page</title>
+    <title>Title</title>
 </head>
 <body>
 <div style="text-align: right;">
     <h4>Welcome,
-        <%
-        if (session.getAttribute("name").equals(ListOfThePersons.getList().get(0).getName()) &&
+            <% if (session.getAttribute("name").equals(ListOfThePersons.getList().get(0).getName()) &&
                 session.getAttribute("login").equals(ListOfThePersons.getList().get(0).getLogin())){
             out.print("<a href=\"/dataAdmin\">" + session.getAttribute("name") + "</a></h4>");
         } else {
@@ -17,10 +22,9 @@
         %>
 </div>
 <div style="text-align: center;">
-    <h1>You have successful entry</h1>
-    <h2>Have a pleasure using our service :)</h2>
-    <p><a href="/mainWindowShop">Go to the shop</a></p>
-    <p><a href="/">Exit you account</a></p>
+    <h2>Your order is accepted</h2>
+
+    <p><a href="/mainWindowShop">back to the Shop</a></p>
 </div>
 </body>
 </html>

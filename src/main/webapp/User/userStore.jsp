@@ -19,7 +19,7 @@
 
         <c:forEach var="i" begin="0" end="${max}" step="1" >
             <form name="test" method="post" action="/changeUsers">
-                <tr><td><button type="submit" name="button" value="Delete ${i}">Delete</td>
+                <tr><td><button type="submit" name="button" value="Delete ${i}">Delete</button></td>
             </form>
         </c:forEach>
     </table>

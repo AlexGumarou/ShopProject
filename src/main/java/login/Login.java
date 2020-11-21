@@ -19,14 +19,16 @@ public class Login extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession();
-
-        for (int i = 0; i < ListOfThePersons.list.size(); i++){
-            if (ListOfThePersons.list.get(i).getLogin().equals(request.getParameter("login"))
-            && ListOfThePersons.list.get(i).getPass().equals(request.getParameter("pass"))){
-                session.setAttribute("login", ListOfThePersons.list.get(i).getLogin());
-                session.setAttribute("pass", ListOfThePersons.list.get(i).getPass());
-                session.setAttribute("name", ListOfThePersons.list.get(i).getName());
-                session.setAttribute("surname", ListOfThePersons.list.get(i).getSurname());
+        for (PersonalData data : ListOfThePersons.getList()){
+            if (data.getLogin().equals(request.getParameter("login"))
+            && data.getPass().equals(request.getParameter("pass"))){
+                session.setAttribute("login", data.getLogin());
+                session.setAttribute("pass", data.getPass());
+                session.setAttribute("name", data.getName());
+                session.setAttribute("surname", data.getSurname());
+                session.setAttribute("address",data.getAddress());
+                session.setAttribute("email",data.getEmail());
+                session.setAttribute("phone",data.getPhone());
             }
         }
         if (ListOfThePersons.map.containsKey(request.getParameter("login"))
