@@ -1,6 +1,6 @@
 <%@ page import="login.ListOfThePersons" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -17,8 +17,29 @@
         %>
 </div>
 
-<c:forEach items="${mapOrder}" var="item"  >
-${item}
-</c:forEach>
+<div style="text-align: center;">
+    <table border="1" align="center">
+
+        <br>
+        <tr>
+            <th>Order</th>
+            <th>Time</th>
+            <th>Order description</th>
+        </tr>
+                <%
+        if (ListOfThePersons.getOrderList().isEmpty()){
+            out.print("Нет заказов на данный момент" + "<br>");
+        } else {
+            for (int i = 0; i < ListOfThePersons.getOrderList().size(); i++) {
+                if (ListOfThePersons.getOrderList().get(i).getUser().equals(request.getSession().getAttribute("login"))) {
+                    out.print("<tr><td>" + ListOfThePersons.getOrderList().get(i).getIdOrder() + "</td>");
+                    out.print("<td>" + ListOfThePersons.getOrderList().get(i).getTime() + "</td>");
+                    out.print("<td>" + ListOfThePersons.getOrderList().get(i).getMap() + "</td></tr>");
+                }
+            }
+        }
+%>
+    </table>
+
 </body>
 </html>

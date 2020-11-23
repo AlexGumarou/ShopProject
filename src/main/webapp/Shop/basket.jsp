@@ -18,6 +18,16 @@
         %>
 </div>
 <div style="text-align: center;">
+<%
+    for (int i = 0; i < GoodsStorage.getListOfGoods().size(); i++) {
+        if (request.getSession().getAttribute("msg" + i) != null){
+            String msg = (String) session.getAttribute("msg" + i);
+            out.print("<font color=\"red\">" + msg + "</font>");
+        }
+    }
+%>
+</div>
+<div style="text-align: center;">
     <table border="1" align="center">
         <h4><caption>Here is you Order:</caption></h4>
         <br>

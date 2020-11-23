@@ -29,7 +29,7 @@
         <th>Description</th>
         <th>Quantity</th>
         <th>Price</th>
-        <th>Enter your value</th>
+        <th>Enter your order</th>
     </tr>
     <form name="test" method="post" action="/basket">
 <%

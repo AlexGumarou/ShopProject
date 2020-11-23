@@ -10,7 +10,14 @@ import java.io.IOException;
 @WebServlet("/userStore")
 public class UserStore extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("list", ListOfThePersons.getList());
+        request.setAttribute("max",ListOfThePersons.getList().size()-1);
+        getServletContext().getRequestDispatcher("/User/userStore.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("list", ListOfThePersons.getList());
         request.setAttribute("max",ListOfThePersons.getList().size()-1);

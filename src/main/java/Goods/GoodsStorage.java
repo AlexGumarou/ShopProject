@@ -26,4 +26,12 @@ public class GoodsStorage {
         listOfGoods.add(new Goods(listOfGoods.size()+1,"Sugar", "This is very tasty sugar",
                 10, 6,0));
     }
+    static public void addNewGoods(int id, String name, String description, int quantity, int price,
+                                   int idPreOrder){
+        listOfGoods.add(new Goods(id, name,description,quantity,price,0 ));
+    }
+    static public void editNewGoods(int id, String name, String description, int quantity, int price, int idPreOrder){
+        listOfGoods.set(id-1, new Goods(id, name,description,quantity,price, 0));
+
+    }
 }

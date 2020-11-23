@@ -3,14 +3,12 @@ package Order;
 import Goods.Goods;
 import Goods.GoodsStorage;
 import login.ListOfThePersons;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
+import java.time.LocalDateTime;
 
 //позже сделать большинство, что тут написано в отдельном классе
 @WebServlet("/choise")
@@ -31,7 +29,7 @@ public class Choise extends HttpServlet {
             }
         }
         ListOfThePersons.addOrdersList(ListOfThePersons.getOrderList().size()+1,
-                user, ListOfThePersons.getMapOrder());
+                user, ListOfThePersons.getMapOrder(), LocalDateTime.now());
         // ниже я уменьшаю значения товаров, которые куплены
         for (Goods goods : GoodsStorage.getListOfGoods()){
             if (goods.getIdPreOrder() > 0 ){

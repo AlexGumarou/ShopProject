@@ -2,6 +2,7 @@ package login;
 
 import Order.Order;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,10 +58,11 @@ public class ListOfThePersons {
         map.remove(login,pass);
     }
 
-    public static void addOrdersList(Integer number, String user, Map map){
-        orderList.add(new Order(number,user,map));
+    public static void addOrdersList(Integer number, String user, Map map, LocalDateTime time){
+        orderList.add(new Order(number,user,map, time));
     }
     public static List<Order> getOrderList() {
         return orderList;
     }
+
 }

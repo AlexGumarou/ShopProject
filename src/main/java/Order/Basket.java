@@ -34,9 +34,17 @@ public class Basket extends HttpServlet {
                 if (quantity != 0){
                     if (!req.getParameter("goods " + i).trim().equals("") && quantity > 0) {
                         int a = Integer.parseInt(req.getParameter("goods " + i));
+                        if (a > quantity){
+                            req.getSession().setAttribute("msg"+i,"We have only " +
+                                    GoodsStorage.getListOfGoods().get(i).getQuantity() + " of " +
+                                    GoodsStorage.getListOfGoods().get(i).getName() + ". " +
+                                    "We have to add max we have. <br>"
+                            );
+                        }
                         if (a > 0) {
                             GoodsStorage.getListOfGoods().get(i).setIdPreOrder(Math.min(a, quantity));
                         }
+
                     } else {
                         GoodsStorage.getListOfGoods().get(i).setIdPreOrder(0);
                     }
