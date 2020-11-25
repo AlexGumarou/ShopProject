@@ -6,10 +6,10 @@ import java.util.Map;
 public class Order {
     private final int idOrder;
     private final String user;
-    private final Map map;
+    private final String map;
     private final LocalDateTime time;
 
-    public Order(int idOrder, String user, Map map, LocalDateTime time) {
+    public Order(int idOrder, String user, String map, LocalDateTime time) {
         this.idOrder = idOrder;
         this.user = user;
         this.map = map;
@@ -28,7 +28,7 @@ public class Order {
         return user;
     }
 
-    public Map getMap() {
+    public String getMap() {
         return map;
     }
 

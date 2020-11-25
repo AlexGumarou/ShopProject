@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 //позже сделать большинство, что тут написано в отдельном классе
 @WebServlet("/choise")
@@ -22,13 +23,17 @@ public class Choise extends HttpServlet {
                 String name = goods.getName();
                 int idOrder = goods.getIdPreOrder();
                 int price = goods.getPrice();
-                order = "Your order was: " + name + " - pieces each one " + price +
-                        "$ and quantity of it was: " + idOrder;
-                OrderStorage.addOrdersMap(OrderStorage.getMapOrder().size() + 1, order);
+                order = "Your order was: " + name + " - each one " + price +
+                        "$ and quantity of it was: " + idOrder + "<br>";
+                int size = OrderStorage.getMapOrder().size();
+                OrderStorage.addOrdersMap( size + 1, order);
             }
         }
-        OrderStorage.addOrdersList(OrderStorage.getOrderList().size()+1,
-                user, OrderStorage.getMapOrder(), LocalDateTime.now());
+        int size = OrderStorage.getOrderList().size();
+        Map map = OrderStorage.getMapOrder();
+        OrderStorage.addOrdersList(size+1, user, map.toString().
+                replace("{","").replace("}","")
+                .replace(",",""), LocalDateTime.now());
         // ниже я уменьшаю значения товаров, которые куплены
         for (Goods goods : GoodsStorage.getListOfGoods()){
             if (goods.getIdPreOrder() > 0 ){

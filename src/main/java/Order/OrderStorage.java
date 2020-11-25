@@ -18,10 +18,12 @@ public class OrderStorage {
         return mapOrder;
     }
 
-    public static void addOrdersList(Integer number, String user, Map map, LocalDateTime time){
+    public static void addOrdersList(Integer number, String user, String map, LocalDateTime time){
         orderList.add(new Order(number,user,map, time));
     }
     public static List<Order> getOrderList() {
         return orderList;
     }
+
+
 }
