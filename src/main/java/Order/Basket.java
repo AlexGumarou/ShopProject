@@ -1,8 +1,6 @@
 package Order;
 
 import Goods.GoodsStorage;
-import login.ListOfThePersons;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +23,7 @@ public class Basket extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ListOfThePersons.getMapOrder().clear();
+        OrderStorage.getMapOrder().clear();
         //здесь я удаляю все значния, сохраненные в MapOrder для того, чтобы они не попали в следующий заказ
         int size = GoodsStorage.getListOfGoods().size();
         for (int i= 0; i < size; i++) {

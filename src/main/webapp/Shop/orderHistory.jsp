@@ -1,5 +1,6 @@
 <%@ page import="login.ListOfThePersons" %>
 <%@ page import="java.util.List" %>
+<%@ page import="Order.OrderStorage" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,14 +28,14 @@
             <th>Order description</th>
         </tr>
                 <%
-        if (ListOfThePersons.getOrderList().isEmpty()){
+        if (OrderStorage.getOrderList().isEmpty()){
             out.print("Нет заказов на данный момент" + "<br>");
         } else {
-            for (int i = 0; i < ListOfThePersons.getOrderList().size(); i++) {
-                if (ListOfThePersons.getOrderList().get(i).getUser().equals(request.getSession().getAttribute("login"))) {
-                    out.print("<tr><td>" + ListOfThePersons.getOrderList().get(i).getIdOrder() + "</td>");
-                    out.print("<td>" + ListOfThePersons.getOrderList().get(i).getTime() + "</td>");
-                    out.print("<td>" + ListOfThePersons.getOrderList().get(i).getMap() + "</td></tr>");
+            for (int i = 0; i < OrderStorage.getOrderList().size(); i++) {
+                if (OrderStorage.getOrderList().get(i).getUser().equals(request.getSession().getAttribute("login"))) {
+                    out.print("<tr><td>" + OrderStorage.getOrderList().get(i).getIdOrder() + "</td>");
+                    out.print("<td>" + OrderStorage.getOrderList().get(i).getTime() + "</td>");
+                    out.print("<td>" + OrderStorage.getOrderList().get(i).getMap() + "</td></tr>");
                 }
             }
         }

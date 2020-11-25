@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Order {
-    private int idOrder;
-    private String user;
-    private Map map;
-    private LocalDateTime time;
+    private final int idOrder;
+    private final String user;
+    private final Map map;
+    private final LocalDateTime time;
 
     public Order(int idOrder, String user, Map map, LocalDateTime time) {
         this.idOrder = idOrder;

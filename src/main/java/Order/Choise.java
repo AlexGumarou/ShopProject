@@ -2,7 +2,6 @@ package Order;
 
 import Goods.Goods;
 import Goods.GoodsStorage;
-import login.ListOfThePersons;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +24,11 @@ public class Choise extends HttpServlet {
                 int price = goods.getPrice();
                 order = "Your order was: " + name + " - pieces each one " + price +
                         "$ and quantity of it was: " + idOrder;
-                ListOfThePersons.addOrdersMap(ListOfThePersons.getMapOrder().size() + 1, order);
+                OrderStorage.addOrdersMap(OrderStorage.getMapOrder().size() + 1, order);
             }
         }
-        ListOfThePersons.addOrdersList(ListOfThePersons.getOrderList().size()+1,
-                user, ListOfThePersons.getMapOrder(), LocalDateTime.now());
+        OrderStorage.addOrdersList(OrderStorage.getOrderList().size()+1,
+                user, OrderStorage.getMapOrder(), LocalDateTime.now());
         // ниже я уменьшаю значения товаров, которые куплены
         for (Goods goods : GoodsStorage.getListOfGoods()){
             if (goods.getIdPreOrder() > 0 ){

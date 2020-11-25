@@ -12,10 +12,6 @@ public class ListOfThePersons {
 
     static Map<String,String> map = new HashMap<>();
     static List<PersonalData> list = new ArrayList<>();
-
-    static Map<Integer,String> mapOrder = new HashMap<>();
-    static List<Order> orderList = new ArrayList<>();
-
     static final String login = "A24";
     static final String pass = "A24";
     static final String name = "Alexey";
@@ -48,21 +44,10 @@ public class ListOfThePersons {
         return list;
     }
 
-    public static void addOrdersMap(Integer number, String order){
-        mapOrder.put(number, order);
-    }
-    public static Map<Integer, String> getMapOrder() {
-        return mapOrder;
-    }
     public static void removeUsersMap(String login, String pass){
         map.remove(login,pass);
     }
 
-    public static void addOrdersList(Integer number, String user, Map map, LocalDateTime time){
-        orderList.add(new Order(number,user,map, time));
-    }
-    public static List<Order> getOrderList() {
-        return orderList;
-    }
+
 
 }
