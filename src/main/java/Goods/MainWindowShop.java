@@ -1,5 +1,7 @@
 package Goods;
 
+import db.ConnectionDB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,9 @@ public class MainWindowShop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        for (int i = 0; i < GoodsStorage.getListOfGoods().size(); i++) {
+        ConnectionDB.getInstance().deleteOneOrder();
+        req.setAttribute("maxGoods", ConnectionDB.getInstance().getAllGoods());
+        for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++) {
             if (req.getSession().getAttribute("msg" + i) != null){
                 req.getSession().setAttribute("msg" + i,"");
             }
@@ -22,8 +26,9 @@ public class MainWindowShop extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("maxGoods",GoodsStorage.getListOfGoods().size());
-        for (int i = 0; i < GoodsStorage.getListOfGoods().size(); i++) {
+        ConnectionDB.getInstance().deleteOneOrder();
+        req.setAttribute("maxGoods", ConnectionDB.getInstance().getAllGoods());
+        for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++) {
             if (req.getSession().getAttribute("msg" + i) != null){
                 req.getSession().setAttribute("msg" + i,"");
             }

@@ -1,5 +1,6 @@
 <%@ page import="Goods.GoodsStorage" %>
 <%@ page import="login.ListOfThePersons" %>
+<%@ page import="db.ConnectionDB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -10,12 +11,13 @@
 
 <div style="text-align: right;">
     <h4>Welcome,
-            <% if (session.getAttribute("name").equals(ListOfThePersons.getList().get(0).getName()) &&
-                session.getAttribute("login").equals(ListOfThePersons.getList().get(0).getLogin())){
-            out.print("<a href=\"/dataAdmin\">" + session.getAttribute("name") + "</a></h4>");
-        } else {
-            out.print("<a href=\"/data\">" + session.getAttribute("name") + "</a></h4>");
-        }
+        <%
+            if (session.getAttribute("name").equals(ConnectionDB.getInstance().getAllUsers().get(0).getName()) &&
+                    session.getAttribute("login").equals(ConnectionDB.getInstance().getAllUsers().get(0).getLogin())){
+                out.print("<a href=\"/dataAdmin\">" + session.getAttribute("name") + "</a></h4>");
+            } else {
+                out.print("<a href=\"/data\">" + session.getAttribute("name") + "</a></h4>");
+            }
         %>
         <p><a href="/basket">You basket here</a></p></h4>
 </div>
@@ -34,12 +36,12 @@
     <form name="test" method="post" action="/basket">
 <%
 
-    for (int i = 0; i < GoodsStorage.getListOfGoods().size(); i++){
-        if (GoodsStorage.getListOfGoods().get(i).getQuantity()>0){
-        out.print("<tr><td>" + GoodsStorage.getListOfGoods().get(i).getName() + "</td>");
-        out.print("<td>" + GoodsStorage.getListOfGoods().get(i).getDescription() + "</td>");
-        out.print("<td>" + GoodsStorage.getListOfGoods().get(i).getQuantity() + "</td>");
-        out.print("<td>" + GoodsStorage.getListOfGoods().get(i).getPrice() + "</td>");
+    for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++){
+        if (ConnectionDB.getInstance().getAllGoods().get(i).getQuantity()>0){
+        out.print("<tr><td>" + ConnectionDB.getInstance().getAllGoods().get(i).getName() + "</td>");
+        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getDescription() + "</td>");
+        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getQuantity() + "</td>");
+        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getPrice() + "</td>");
         out.print("<td><input type=\"text\" name = \"goods " + i + "\"" + "size=\"10\"></td></tr>");
         }
         }

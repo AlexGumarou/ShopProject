@@ -1,5 +1,7 @@
 package login;
 
+import db.ConnectionDB;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,22 +25,15 @@ public class RegistrationIncorrect extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
-        String regExpLogin = "[a-zA-Z0-9]+";
-        String regExpPass = "([a-zA-Z0-9]*[A-Z]+[0-9]+[a-zA-Z0-9]*||[a-zA-Z0-9]*[0-9]+[A-Z]+[a-zA-Z0-9]*)";
-        try {
-            if (!ListOfThePersons.map.containsKey(request.getParameter("login")) &&
-                    request.getParameter("login").matches(regExpLogin) &&
-                    request.getParameter("pass").matches(regExpPass)) {
-                ListOfThePersons.addUsersMap(request.getParameter("login"), request.getParameter("pass"));
-                ListOfThePersons.addUsersList(request.getParameter("login"), request.getParameter("pass"),
-                        request.getParameter("name"), request.getParameter("surname"),
-                        "", "", "");
-                response.sendRedirect("/");
-            } else response.sendRedirect("/registrationIncorrect");
-        } finally {
-            writer.close();
+        String login = request.getParameter("login");
+        String pass = request.getParameter("pass");
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        if (ConnectionDB.getInstance().isUser(login, pass)){
+            response.sendRedirect("/registrationIncorrect");
+        } else {
+            ConnectionDB.getInstance().addUser(login, pass, name, surname);
+            response.sendRedirect("/");
         }
     }
 }

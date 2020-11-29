@@ -5,40 +5,47 @@ import java.util.Map;
 
 public class Order {
     private final int idOrder;
-    private final String user;
-    private final String map;
-    private final LocalDateTime time;
+    private final String name;
+    private final int price;
+    private final int quantity;
+    private final int sum;
 
-    public Order(int idOrder, String user, String map, LocalDateTime time) {
+    public Order(int idOrder, String name, int price, int quantity, int sum) {
         this.idOrder = idOrder;
-        this.user = user;
-        this.map = map;
-        this.time = time;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.sum = sum;
     }
 
     public int getIdOrder() {
         return idOrder;
     }
 
-    public Object getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public String getMap() {
-        return map;
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getSum() {
+        return sum;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "idOrder=" + idOrder +
-                ", user='" + user + '\'' +
-                ", map=" + map +
-                ", time=" + time +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", sum=" + sum +
                 '}';
     }
 }

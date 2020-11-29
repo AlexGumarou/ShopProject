@@ -56,14 +56,12 @@ public class PersonalData {
 
     @Override
     public String toString() {
-        return "PersonalData{" +
-                "login='" + login + '\'' +
+        return  "login='" + login + '\'' +
                 ", pass='" + pass + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+                ", phone='" + phone + '\'';
     }
 }

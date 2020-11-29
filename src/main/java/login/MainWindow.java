@@ -12,10 +12,7 @@ import java.io.IOException;
 @WebServlet("/mainWindow")
 public class MainWindow extends HttpServlet {
 
-    public void init() {
-        GoodsStorage.getListOfGoods();
-        GoodsStorage.addGoods();
-    }
+
         protected void doGet (HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{
             response.setContentType("text/html");

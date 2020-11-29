@@ -1,5 +1,7 @@
 package login;
 
+import db.ConnectionDB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +14,16 @@ public class UserStore extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("list", ListOfThePersons.getList());
-        request.setAttribute("max",ListOfThePersons.getList().size()-1);
+
+        request.setAttribute("list", ConnectionDB.getInstance().getAllUsers());
+        request.setAttribute("max",ConnectionDB.getInstance().getAllUsers().size() - 1);
         getServletContext().getRequestDispatcher("/User/userStore.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("list", ListOfThePersons.getList());
-        request.setAttribute("max",ListOfThePersons.getList().size()-1);
+        request.setAttribute("list",ConnectionDB.getInstance().getAllUsers());
+        request.setAttribute("max",ConnectionDB.getInstance().getAllUsers().size() - 1);
         getServletContext().getRequestDispatcher("/User/userStore.jsp").forward(request, response);
     }
 }

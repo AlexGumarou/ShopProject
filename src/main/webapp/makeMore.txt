@@ -1,8 +1,14 @@
-Главное:
-Сделать историю заказов, а именно:
-- в файле choise.java не правильно отображаются заказы
-
 1. Разобраться с нажатием на кнопку выбора доставки "без выбора".
 2. После ввода данных о адресе, телефоне нужно чтобы эта информация сразу отображалась в  личном кабинете
     (сейчас она сохраняется в базе, но отображается только после выхода и входа Login)
-5. Сделать возможность у admin добавлять и удалять товары
+
+//    public Connection getConnection() {
+//        try {
+//            String url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?serverTimezone=UTC";
+//            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+//            // нужно ли это после точки?
+//            connection = DriverManager.getConnection(url, dbUser, dbPass);
+//        }catch (ClassNotFoundException | SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e){
+//            e.printStackTrace();
+//        } return connection;
+//    }

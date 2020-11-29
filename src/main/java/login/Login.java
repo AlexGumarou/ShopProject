@@ -1,5 +1,7 @@
 package login;
 
+import db.ConnectionDB;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,28 +13,21 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet{
 
     @Override
-    public void init (){
-        ListOfThePersons.addAdmin();
-    }
-
-    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession();
-        for (PersonalData data : ListOfThePersons.getList()){
-            if (data.getLogin().equals(request.getParameter("login"))
-            && data.getPass().equals(request.getParameter("pass"))){
-                session.setAttribute("login", data.getLogin());
-                session.setAttribute("pass", data.getPass());
-                session.setAttribute("name", data.getName());
-                session.setAttribute("surname", data.getSurname());
-                session.setAttribute("address",data.getAddress());
-                session.setAttribute("email",data.getEmail());
-                session.setAttribute("phone",data.getPhone());
-            }
+        String login = request.getParameter("login");
+        String pass = request.getParameter("pass");
+            if (ConnectionDB.getInstance().isUser(login,pass)){
+                session.setAttribute("login", ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getLogin());
+                session.setAttribute("pass", ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getPass());
+                session.setAttribute("name", ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getName());
+                session.setAttribute("surname", ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getSurname());
+                session.setAttribute("address",ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getAddress());
+                session.setAttribute("email",ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getEmail());
+                session.setAttribute("phone",ConnectionDB.getInstance().isCurrentUser(login,pass).get(0).getPhone());
         }
-        if (ListOfThePersons.map.containsKey(request.getParameter("login"))
-                && ListOfThePersons.map.containsValue(request.getParameter("pass"))){
+        if (ConnectionDB.getInstance().isUser(login,pass)){
             response.sendRedirect("/mainWindow");
         } else {
             response.sendRedirect("/incorrect");
