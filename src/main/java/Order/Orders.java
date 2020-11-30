@@ -1,14 +1,12 @@
 package Order;
 
-import java.time.LocalDateTime;
-
 public class Orders {
     private final int id;
     private final String users;
     private final String orders;
-    private final LocalDateTime time;
+    private final String time;
 
-    public Orders(int id, String users, String orders, LocalDateTime time) {
+    public Orders(int id, String users, String orders, String time) {
         this.id = id;
         this.users = users;
         this.orders = orders;
@@ -27,7 +25,7 @@ public class Orders {
         return orders;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 

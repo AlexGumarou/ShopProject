@@ -1,5 +1,3 @@
-<%@ page import="Goods.GoodsStorage" %>
-<%@ page import="login.ListOfThePersons" %>
 <%@ page import="db.ConnectionDB" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -45,7 +43,7 @@
             String name = ConnectionDB.getInstance().getOneOrder().get(i).getName();
             int price = ConnectionDB.getInstance().getOneOrder().get(i).getPrice();
             int quantity = ConnectionDB.getInstance().getOneOrder().get(i).getQuantity();
-            int sum = ConnectionDB.getInstance().getOneOrder().get(i).getSum();
+            int sum = quantity*price;
             if (quantity>0){
             out.print("<tr><td>" + name + "</td>");
             out.print("<td>" + price + "</td>");

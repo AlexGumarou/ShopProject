@@ -40,12 +40,11 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "idOrder=" + idOrder +
-                ", name='" + name + '\'' +
+        return idOrder +
+                ". name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", sum=" + sum +
-                '}';
+                '}' + "<br>";
     }
 }

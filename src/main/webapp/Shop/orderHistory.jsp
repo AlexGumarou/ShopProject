@@ -1,7 +1,6 @@
-<%@ page import="login.ListOfThePersons" %>
 <%@ page import="java.util.List" %>
-<%@ page import="Order.OrderStorage" %>
 <%@ page import="db.ConnectionDB" %>
+<%@ page import="Order.Orders" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -30,14 +29,16 @@
             <th>Order description</th>
         </tr>
                 <%
-        if (OrderStorage.getOrderList().isEmpty()){
+                    String user = session.getAttribute("login").toString();
+                    List<Orders> list = ConnectionDB.getInstance().getAllOrders(user);
+        if (list.isEmpty()){
             out.print("Нет заказов на данный момент" + "<br>");
         } else {
-            for (int i = 0; i < OrderStorage.getOrderList().size(); i++) {
-                if (OrderStorage.getOrderList().get(i).getUser().equals(request.getSession().getAttribute("login"))) {
-                    out.print("<tr><td>" + OrderStorage.getOrderList().get(i).getIdOrder() + "</td>");
-                    out.print("<td>" + OrderStorage.getOrderList().get(i).getTime() + "</td>");
-                    out.print("<td>" + OrderStorage.getOrderList().get(i).getMap() + "</td></tr>");
+            for (Orders orders : list) {
+                if (orders.getUsers().equals(request.getSession().getAttribute("login"))) {
+                    out.print("<tr><td>" + orders.getId() + "</td>");
+                    out.print("<td>" + orders.getTime() + "</td>");
+                    out.print("<td>" + orders.getOrders() + "</td></tr>");
                 }
             }
         }

@@ -1,4 +1,3 @@
-<%@ page import="login.ListOfThePersons" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div style="text-align: center;">
     <h3>All the current users</h3>

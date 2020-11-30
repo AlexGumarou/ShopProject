@@ -1,5 +1,7 @@
 package Goods;
 
+import db.ConnectionDB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +22,11 @@ public class AddGoods extends HttpServlet {
         try {
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             int price = Integer.parseInt(req.getParameter("price"));
+            String name = req.getParameter("name");
+            String description = req.getParameter("description");
             if (quantity > 0 && price > 0 && !req.getParameter("name").equals("".trim())
-            && !req.getParameter("description").equals("".trim())) {
-                GoodsStorage.addNewGoods(GoodsStorage.getListOfGoods().size() + 1, req.getParameter("name"),
-                        req.getParameter("description"), quantity, price, 0);
+                    && !req.getParameter("description").equals("".trim())) {
+                ConnectionDB.getInstance().addGoods(name,description,quantity,price);
                 resp.sendRedirect("/modifyGoods");
             } else {
                 resp.sendRedirect("/Shop/incorrectAdd.jsp");

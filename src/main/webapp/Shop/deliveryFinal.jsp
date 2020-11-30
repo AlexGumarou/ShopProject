@@ -1,4 +1,3 @@
-<%@ page import="login.ListOfThePersons" %>
 <%@ page import="db.ConnectionDB" %><%--
   Created by IntelliJ IDEA.
   User: А

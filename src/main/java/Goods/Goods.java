@@ -6,23 +6,13 @@ public class Goods {
     private String description;
     private int quantity;
     private int price;
-    private int idPreOrder;
 
-    public Goods(int id, String name, String description, int quantity, int price, int idPreOrder) {
+    public Goods(int id, String name, String description, int quantity, int price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.idPreOrder = idPreOrder;
-    }
-
-    public int getIdPreOrder() {
-        return idPreOrder;
-    }
-
-    public void setIdPreOrder(int idPreOrder) {
-        this.idPreOrder = idPreOrder;
     }
 
     public void setQuantity(int quantity) {
@@ -61,7 +51,6 @@ public class Goods {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", idPreOrder=" + idPreOrder +
                 '}';
     }
 }

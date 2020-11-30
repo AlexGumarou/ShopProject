@@ -1,7 +1,5 @@
 package login;
 
-import Goods.GoodsStorage;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +9,6 @@ import java.io.IOException;
 
 @WebServlet("/mainWindow")
 public class MainWindow extends HttpServlet {
-
 
         protected void doGet (HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException{

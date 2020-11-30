@@ -1,6 +1,7 @@
 package db;
 import Goods.Goods;
 import Order.Order;
+import Order.Orders;
 import login.PersonalData;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -8,9 +9,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,7 +161,7 @@ public class ConnectionDB {
         connection = ConnectionDB.getInstance().getConnection();
         List<Goods> listOfGoods = new ArrayList<>();
         try {
-            String sql = "SELECT id, name, description, quantity, price, idPreOrder FROM goods";
+            String sql = "SELECT id, name, description, quantity, price FROM goods";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -172,8 +170,7 @@ public class ConnectionDB {
                 String description = resultSet.getString("description");
                 int quantity = resultSet.getInt("quantity");
                 int price = resultSet.getInt("price");
-                int idPreOrder = resultSet.getInt("idPreOrder");
-                listOfGoods.add(new Goods(id, name, description, quantity, price, idPreOrder));
+                listOfGoods.add(new Goods(id, name, description, quantity, price));
             }
             connection.close();
         }
@@ -183,28 +180,28 @@ public class ConnectionDB {
         return listOfGoods;
     }
 
-//    //получаем все заказы пользователей
-//    public List<Order> getAllOrders(String user) {
-//        connection = ConnectionDB.getInstance().getConnection();
-//        List<Order> listOfOrders = new ArrayList<>();
-//
-//        try {
-//            String sql = "SELECT id, orders, date FROM orders";
-//            statement = connection.prepareStatement(sql);
-//            resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                String id = resultSet.getString("id");
-//                String orders = resultSet.getString("orders");
-//                String time = resultSet.getString("date");
-//                listOfOrders.add(new Order(id,user,orders,time,id));
-//            }
-//            connection.close();
-//        }
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return listOfOrders;
-//    }
+    //получаем все заказы пользователей
+    public List<Orders> getAllOrders(String user) {
+        connection = ConnectionDB.getInstance().getConnection();
+        List<Orders> listOfOrders = new ArrayList<>();
+        try {
+            String sql = "SELECT id, orders, date FROM orders WHERE users = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, user);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String orders = resultSet.getString("orders");
+                String time = resultSet.getString("date");
+                listOfOrders.add(new Orders(id,user,orders,time));
+            }
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfOrders;
+    }
 
     //этот метод для отображения заказа в корзине
     public List<Order> getOneOrder() {
@@ -262,23 +259,121 @@ public class ConnectionDB {
         }
     }
 
-//    // этот метод для добавления товара в 1 заказ
-//    public void addOrders(String user, String order) {
-//        connection = ConnectionDB.getInstance().getConnection();
-//        int size = ConnectionDB.getInstance().getAllOrders(user).size();
-//        String time = LocalDateTime.now().toString();
-//        try {
-//            String sql = "INSERT INTO orders (id, users, orders, date) VALUES (?,?,?,?)";
-//            statement = connection.prepareStatement(sql);
-//            statement.setInt(1, size+1);
-//            statement.setString(2, user);
-//            statement.setString(3, order);
-//            statement.setString(4, time);
-//            statement.executeUpdate();
-//            connection.close();
-//        }
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    //в этом методе получаем максимальный id из таблицы с заказами
+    public int getIdOfOrders() {
+        connection = ConnectionDB.getInstance().getConnection();
+        int id = 0;
+        try {
+            String sql = "SELECT MAX(id) FROM orders";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    // этот метод преобразует дату из util в sql
+    private static java.sql.Date getCurrentDate() {
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Date(today.getTime());
+    }
+
+    // этот метод для добавления товара в 1 заказ
+    public void addOrders(String user, String order) {
+        int size = ConnectionDB.getInstance().getIdOfOrders();
+        connection = ConnectionDB.getInstance().getConnection();
+        try {
+            String sql = "INSERT INTO orders(id, orders, users, date) VALUES (?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, size + 1);
+            statement.setString(2, order);
+            statement.setString(3, user);
+            statement.setDate(4, getCurrentDate());
+            statement.execute();
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //этот метод удаляет товар из БД
+    public void deleteGoods(String name) {
+        connection = ConnectionDB.getInstance().getConnection();
+        try {
+            String sql = "DELETE FROM goods WHERE name = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.executeUpdate();
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // этот метод добавляет товары
+    public void addGoods(String name, String description, int quantity, int price) {
+        int id = getIdOfGoods() + 1;
+        connection = ConnectionDB.getInstance().getConnection();
+        try {
+            String sql = "INSERT INTO goods (id, name, description, quantity, price) VALUES (?,?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setString(3, description);
+            statement.setInt(4, quantity);
+            statement.setInt(5, price);
+            statement.executeUpdate();
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // в этом методе получаем максимальный id из БД товаров
+    public int getIdOfGoods() {
+        connection = ConnectionDB.getInstance().getConnection();
+        int id = 0;
+        try {
+            String sql = "SELECT MAX(id) FROM goods";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    // в этом методе изменяем товары
+    public void editGoods(int id, String name, String description, int quantity, int price) {
+        connection = ConnectionDB.getInstance().getConnection();
+        try {
+            String sql = "UPDATE goods SET id = ?, name = ?, description = ?, quantity = ?, price = ? WHERE (id = ?)";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setString(3, description);
+            statement.setInt(4, quantity);
+            statement.setInt(5, price);
+            statement.setInt(6, id);
+            statement.executeUpdate();
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package Order;
 
-import Goods.GoodsStorage;
 import db.ConnectionDB;
 
 import javax.servlet.ServletException;
@@ -43,7 +42,7 @@ public class Basket extends HttpServlet {
                         if (a > 0) {
                             String name = ConnectionDB.getInstance().getAllGoods().get(i).getName();
                             int price = ConnectionDB.getInstance().getAllGoods().get(i).getPrice();
-                            int sum = quantity * price;
+                            int sum = a * price;
                             ConnectionDB.getInstance().addOneOrder(name, price, a, sum);
                         }
                     }

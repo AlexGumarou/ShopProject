@@ -1,16 +1,11 @@
 package Order;
 
-import Goods.Goods;
-import Goods.GoodsStorage;
 import db.ConnectionDB;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Map;
 
 //позже сделать большинство, что тут написано в отдельном классе
 @WebServlet("/choise")
@@ -19,35 +14,19 @@ public class Choise extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String user =  req.getSession().getAttribute("login").toString();
-//        ConnectionDB.getInstance().addOrders(user,ConnectionDB.getInstance().getOneOrder().toString());
-
-        String order;
-
-        for (Goods goods : ConnectionDB.getInstance().getAllGoods()){
-            if (goods.getIdPreOrder() > 0 ){
-                String name = goods.getName();
-                int idOrder = goods.getIdPreOrder();
-                int price = goods.getPrice();
-                order = "Your order was: " + name + " - each one " + price +
-                        "$ and quantity of it was: " + idOrder + "<br>";
-                int size = OrderStorage.getMapOrder().size();
-                OrderStorage.addOrdersMap( size + 1, order);
-            }
-        }
-//        int size = ConnectionDB.getInstance().getAllOrders(user).size();
-        Map map = OrderStorage.getMapOrder();
-//        ConnectionDB.getInstance().addOrders(size+1, user, map.toString().
-//                replace("{","").replace("}","")
-//                .replace(",",""), LocalDateTime.now());
+        ConnectionDB.getInstance().addOrders(user,ConnectionDB.getInstance().getOneOrder()
+                .toString().replace("{","").replace("}","")
+                .replace(",","").replace("[","").replace("]",""));
         // ниже я уменьшаю значения товаров, которые куплены
-        for (Goods goods : ConnectionDB.getInstance().getAllGoods()){
-            if (goods.getIdPreOrder() > 0 ){
-                int quantity = goods.getQuantity();
-                int idPreOrder = goods.getIdPreOrder();
-                int result = quantity - idPreOrder;
-                goods.setQuantity(result);
-            }
-        }
+
+//        for (Goods goods : ConnectionDB.getInstance().getAllGoods()){
+//            if (goods.getIdPreOrder() > 0 ){
+//                int quantity = goods.getQuantity();
+//                int idPreOrder = goods.getIdPreOrder();
+//                int result = quantity - idPreOrder;
+//                goods.setQuantity(result);
+//            }
+//        }
         //ниже я перенаправляю пользователя в зависисмости от его выбора
         if (req.getParameter("wayOf") != null) {
             if (req.getParameter("wayOf").equals("pickUp")) {

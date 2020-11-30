@@ -4,7 +4,7 @@
               maxActive="8"
               validationQuery="select 1"
               url="jdbc:mysql://localhost:3306/webtest?serverTimezone=UTC"
-              driverClassName="com.mysql.jdbc.Driver"
+              driverClassName="com.mysql.cj.jdbc.Driver"
               password="JDBC24Java"
               username="root"
               type="javax.sql.DataSource"
