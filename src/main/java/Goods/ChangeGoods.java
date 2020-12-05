@@ -1,5 +1,6 @@
 package Goods;
 
+import dao.GoodsDao;
 import db.ConnectionDB;
 
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +14,11 @@ public class ChangeGoods extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        for (int i = 0; i< ConnectionDB.getInstance().getAllGoods().size(); i++) {
-            String name = ConnectionDB.getInstance().getAllGoods().get(i).getName();
+        GoodsDao goodsDao = new GoodsDao();
+        for (int i = 0; i< goodsDao.getAllGoods().size(); i++) {
+            int id = goodsDao.getAllGoods().get(i).getId();
             if (req.getParameter("button").equals("Delete " + i)) {
-                ConnectionDB.getInstance().deleteGoods(name);
+                goodsDao.deleteGoods(id);
                 resp.sendRedirect("/modifyGoods");
             }
         }

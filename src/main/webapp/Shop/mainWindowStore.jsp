@@ -1,4 +1,6 @@
 <%@ page import="db.ConnectionDB" %>
+<%@ page import="dao.UserDao" %>
+<%@ page import="dao.GoodsDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -10,8 +12,9 @@
 <div style="text-align: right;">
     <h4>Welcome,
         <%
-            if (session.getAttribute("name").equals(ConnectionDB.getInstance().getAllUsers().get(0).getName()) &&
-                    session.getAttribute("login").equals(ConnectionDB.getInstance().getAllUsers().get(0).getLogin())){
+            UserDao userDao = new UserDao();
+            if (session.getAttribute("name").equals(userDao.getAllUsers().get(0).getName()) &&
+                    session.getAttribute("login").equals(userDao.getAllUsers().get(0).getLogin())){
                 out.print("<a href=\"/dataAdmin\">" + session.getAttribute("name") + "</a></h4>");
             } else {
                 out.print("<a href=\"/data\">" + session.getAttribute("name") + "</a></h4>");
@@ -33,13 +36,13 @@
     </tr>
     <form name="test" method="post" action="/basket">
 <%
-
-    for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++){
-        if (ConnectionDB.getInstance().getAllGoods().get(i).getQuantity()>0){
-        out.print("<tr><td>" + ConnectionDB.getInstance().getAllGoods().get(i).getName() + "</td>");
-        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getDescription() + "</td>");
-        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getQuantity() + "</td>");
-        out.print("<td>" + ConnectionDB.getInstance().getAllGoods().get(i).getPrice() + "</td>");
+    GoodsDao goodsDao = new GoodsDao();
+    for (int i = 0; i < goodsDao.getAllGoods().size(); i++){
+        if (goodsDao.getAllGoods().get(i).getQuantity()>0){
+        out.print("<tr><td>" + goodsDao.getAllGoods().get(i).getName() + "</td>");
+        out.print("<td>" + goodsDao.getAllGoods().get(i).getDescription() + "</td>");
+        out.print("<td>" + goodsDao.getAllGoods().get(i).getQuantity() + "</td>");
+        out.print("<td>" + goodsDao.getAllGoods().get(i).getPrice() + "</td>");
         out.print("<td><input type=\"text\" name = \"goods " + i + "\"" + "size=\"10\"></td></tr>");
         }
         }

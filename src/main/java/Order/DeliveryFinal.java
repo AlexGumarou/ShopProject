@@ -1,7 +1,7 @@
 package Order;
 
-import db.ConnectionDB;
-import login.PersonalData;
+import dao.UserDao;
+import entity.PersonalData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +13,11 @@ import java.io.IOException;
 public class DeliveryFinal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDao userDao = new UserDao();
         String address = req.getParameter("address");
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
-        for (PersonalData data : ConnectionDB.getInstance().getAllUsers()) {
+        for (PersonalData data : userDao.getAllUsers()) {
             data.setAddress(address);
             data.setEmail(email);
             data.setPhone(phone);

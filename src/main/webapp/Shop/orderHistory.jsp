@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="db.ConnectionDB" %>
-<%@ page import="Order.Orders" %>
+<%@ page import="entity.Orders" %>
+<%@ page import="dao.UserDao" %>
+<%@ page import="dao.OrderDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,8 +12,9 @@
 <div style="text-align: right;">
     <h4>Welcome,
             <%
-        if (session.getAttribute("name").equals(ConnectionDB.getInstance().getAllUsers().get(0).getName()) &&
-                session.getAttribute("login").equals(ConnectionDB.getInstance().getAllUsers().get(0).getLogin())){
+            UserDao userDao = new UserDao();
+        if (session.getAttribute("name").equals(userDao.getAllUsers().get(0).getName()) &&
+                session.getAttribute("login").equals(userDao.getAllUsers().get(0).getLogin())){
             out.print("<a href=\"/dataAdmin\">" + session.getAttribute("name") + "</a></h4>");
         } else {
             out.print("<a href=\"/data\">" + session.getAttribute("name") + "</a></h4>");
@@ -29,15 +32,15 @@
             <th>Order description</th>
         </tr>
                 <%
-                    String user = session.getAttribute("login").toString();
-                    List<Orders> list = ConnectionDB.getInstance().getAllOrders(user);
+                    OrderDao orderDao = new OrderDao();
+                    List<Orders> list = orderDao.getAllOrders();
         if (list.isEmpty()){
             out.print("Нет заказов на данный момент" + "<br>");
         } else {
             for (Orders orders : list) {
                 if (orders.getUsers().equals(request.getSession().getAttribute("login"))) {
                     out.print("<tr><td>" + orders.getId() + "</td>");
-                    out.print("<td>" + orders.getTime() + "</td>");
+                    out.print("<td>" + orders.getDate() + "</td>");
                     out.print("<td>" + orders.getOrders() + "</td></tr>");
                 }
             }

@@ -1,5 +1,6 @@
 package login;
 
+import dao.UserDao;
 import db.ConnectionDB;
 
 import javax.servlet.ServletException;
@@ -14,16 +15,17 @@ public class UserStore extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.setAttribute("list", ConnectionDB.getInstance().getAllUsers());
-        request.setAttribute("max",ConnectionDB.getInstance().getAllUsers().size() - 1);
+        UserDao userDao = new UserDao();
+        request.setAttribute("list", userDao.getAllUsers());
+        request.setAttribute("max",userDao.getAllUsers().size() - 1);
         getServletContext().getRequestDispatcher("/User/userStore.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("list",ConnectionDB.getInstance().getAllUsers());
-        request.setAttribute("max",ConnectionDB.getInstance().getAllUsers().size() - 1);
+        UserDao userDao = new UserDao();
+        request.setAttribute("list",userDao.getAllUsers());
+        request.setAttribute("max",userDao.getAllUsers().size() - 1);
         getServletContext().getRequestDispatcher("/User/userStore.jsp").forward(request, response);
     }
 }

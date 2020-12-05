@@ -1,5 +1,6 @@
 package login;
 
+import dao.UserDao;
 import db.ConnectionDB;
 
 import java.io.IOException;
@@ -19,14 +20,15 @@ public class Registration extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        UserDao userDao = new UserDao();
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
-        if (ConnectionDB.getInstance().isUser(login, pass)){
+        if (userDao.isUser(login, pass)){
             response.sendRedirect("/registrationIncorrect");
         } else {
-            ConnectionDB.getInstance().addUser(login, pass, name, surname);
+            userDao.addUser(login, pass, name, surname);
             response.sendRedirect("/");
         }
     }

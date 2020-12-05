@@ -1,5 +1,6 @@
 package login;
 
+import dao.UserDao;
 import db.ConnectionDB;
 
 import javax.servlet.ServletException;
@@ -19,14 +20,14 @@ public class ChangeUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = resp.getWriter();
+        UserDao userDao = new UserDao();
         if (req.getParameter("button").equals("Delete " + 0)){
             writer.print("Unable to delete ADMIN");
         }
-        for (int i = 1; i<ConnectionDB.getInstance().getAllUsers().size(); i++) {
+        for (int i = 1; i<userDao.getAllUsers().size(); i++) {
             if (req.getParameter("button").equals("Delete " + i)) {
-                String login = ConnectionDB.getInstance().getAllUsers().get(i).getLogin();
-                String pass = ConnectionDB.getInstance().getAllUsers().get(i).getPass();
-                ConnectionDB.getInstance().deleteUser(login,pass);
+                int id = userDao.getAllUsers().get(i).getId();
+                userDao.deleteUser(id);
                 resp.sendRedirect("/userStore");
             }
         }

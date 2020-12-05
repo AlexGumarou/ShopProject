@@ -1,5 +1,6 @@
 package Goods;
 
+import dao.GoodsDao;
 import db.ConnectionDB;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,9 @@ public class MainWindowShop extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ConnectionDB.getInstance().deleteOneOrder();
-        req.setAttribute("maxGoods", ConnectionDB.getInstance().getAllGoods());
-        for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++) {
+        GoodsDao goodsDao = new GoodsDao();
+        req.setAttribute("maxGoods", goodsDao.getAllGoods());
+        for (int i = 0; i < goodsDao.getAllGoods().size(); i++) {
             if (req.getSession().getAttribute("msg" + i) != null){
                 req.getSession().setAttribute("msg" + i,"");
             }
@@ -27,8 +29,9 @@ public class MainWindowShop extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ConnectionDB.getInstance().deleteOneOrder();
-        req.setAttribute("maxGoods", ConnectionDB.getInstance().getAllGoods());
-        for (int i = 0; i < ConnectionDB.getInstance().getAllGoods().size(); i++) {
+        GoodsDao goodsDao = new GoodsDao();
+        req.setAttribute("maxGoods", goodsDao.getAllGoods());
+        for (int i = 0; i < goodsDao.getAllGoods().size(); i++) {
             if (req.getSession().getAttribute("msg" + i) != null){
                 req.getSession().setAttribute("msg" + i,"");
             }

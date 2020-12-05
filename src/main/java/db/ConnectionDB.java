@@ -1,8 +1,8 @@
 package db;
-import Goods.Goods;
-import Order.Order;
-import Order.Orders;
-import login.PersonalData;
+import entity.Goods;
+import entity.Order;
+import entity.Orders;
+import entity.PersonalData;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -41,7 +41,7 @@ public class ConnectionDB {
     }
 
     //этот метод достает всех пользователей из БД
-    public List<PersonalData> getAllUsers() {
+    public List<PersonalData> getAllUse() {
         connection = ConnectionDB.getInstance().getConnection();
         List<PersonalData> listOfUsers = new ArrayList<>();
         try {
@@ -193,7 +193,7 @@ public class ConnectionDB {
                 int id = resultSet.getInt("id");
                 String orders = resultSet.getString("orders");
                 String time = resultSet.getString("date");
-                listOfOrders.add(new Orders(id,user,orders,time));
+//                listOfOrders.add(new Orders(user,orders,time));
             }
             connection.close();
         }

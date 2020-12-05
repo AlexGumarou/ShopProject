@@ -1,6 +1,8 @@
 package Goods;
 
+import dao.GoodsDao;
 import db.ConnectionDB;
+import entity.Goods;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +16,8 @@ import java.util.List;
 public class EditGoods extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Goods> list = ConnectionDB.getInstance().getAllGoods();
+        GoodsDao goodsDao = new GoodsDao();
+        List<Goods> list = goodsDao.getAllGoods();
         for (int i = 0; i< list.size(); i++) {
             if (req.getParameter("button").equals("Edit " + i)){
                 req.setAttribute("id",list.get(i).getId());
@@ -29,7 +32,8 @@ public class EditGoods extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Goods> list = ConnectionDB.getInstance().getAllGoods();
+        GoodsDao goodsDao = new GoodsDao();
+        List<Goods> list = goodsDao.getAllGoods();
         for (int i = 0; i< list.size(); i++) {
             int id = Integer.parseInt(req.getParameter("id"));
             int price = Integer.parseInt(req.getParameter("price"));
@@ -37,7 +41,7 @@ public class EditGoods extends HttpServlet {
             String name = req.getParameter("name");
             String description = req.getParameter("description");
             if (list.get(i).getId() == id) {
-                ConnectionDB.getInstance().editGoods(id, name, description, quantity, price);
+                goodsDao.editGoods(id, name, description, quantity, price);
                 resp.sendRedirect("/modifyGoods");
             }
         }
