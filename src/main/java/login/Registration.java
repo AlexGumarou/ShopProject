@@ -1,8 +1,6 @@
 package login;
 
 import dao.UserDao;
-import db.ConnectionDB;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +23,8 @@ public class Registration extends HttpServlet {
         String pass = request.getParameter("pass");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
-        if (userDao.isUser(login, pass)){
+        if (userDao.isUser(login, pass) || login.equals("".trim())
+                || pass.equals("".trim()) || name.equals("".trim())){
             response.sendRedirect("/registrationIncorrect");
         } else {
             userDao.addUser(login, pass, name, surname);

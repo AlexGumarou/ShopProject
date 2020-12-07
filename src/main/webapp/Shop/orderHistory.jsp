@@ -1,5 +1,4 @@
 <%@ page import="java.util.List" %>
-<%@ page import="db.ConnectionDB" %>
 <%@ page import="entity.Orders" %>
 <%@ page import="dao.UserDao" %>
 <%@ page import="dao.OrderDao" %>
@@ -28,7 +27,7 @@
         <br>
         <tr>
             <th>Order</th>
-            <th>Time</th>
+            <th>Date</th>
             <th>Order description</th>
         </tr>
                 <%

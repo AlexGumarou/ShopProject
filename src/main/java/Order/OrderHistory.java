@@ -1,8 +1,6 @@
 package Order;
 
 import dao.OrderDao;
-import db.ConnectionDB;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +13,6 @@ public class OrderHistory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
-        String user =  req.getSession().getAttribute("login").toString();
         req.setAttribute("mapOrder", orderDao.getAllOrders());
         getServletContext().getRequestDispatcher("/Shop/orderHistory.jsp").forward(req,resp);
     }
@@ -23,7 +20,6 @@ public class OrderHistory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
-        String user =  req.getSession().getAttribute("login").toString();
         req.setAttribute("mapOrder", orderDao.getAllOrders());
         getServletContext().getRequestDispatcher("/Shop/orderHistory.jsp").forward(req,resp);
     }

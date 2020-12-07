@@ -35,7 +35,7 @@
             </table>
     </table>
     <form name="test" method="get" action="/addGoods">
-        <tr><td><button type="submit" >Add goods</button></td>
+        <tr><td><button type="submit" >Add Goods</button></td>
     </form>
     <p><a href="/dataAdmin">back</a></p>
 

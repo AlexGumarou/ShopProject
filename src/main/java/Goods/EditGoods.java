@@ -1,9 +1,7 @@
 package Goods;
 
 import dao.GoodsDao;
-import db.ConnectionDB;
 import entity.Goods;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,13 +32,13 @@ public class EditGoods extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GoodsDao goodsDao = new GoodsDao();
         List<Goods> list = goodsDao.getAllGoods();
-        for (int i = 0; i< list.size(); i++) {
+        for (Goods goods : list) {
             int id = Integer.parseInt(req.getParameter("id"));
             int price = Integer.parseInt(req.getParameter("price"));
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             String name = req.getParameter("name");
             String description = req.getParameter("description");
-            if (list.get(i).getId() == id) {
+            if (goods.getId() == id) {
                 goodsDao.editGoods(id, name, description, quantity, price);
                 resp.sendRedirect("/modifyGoods");
             }

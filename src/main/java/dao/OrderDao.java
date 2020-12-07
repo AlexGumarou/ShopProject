@@ -1,13 +1,10 @@
 package dao;
 
-import entity.Goods;
 import entity.Order;
 import entity.Orders;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderDao {
@@ -48,7 +45,7 @@ public class OrderDao {
     public void deleteOneOrder() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.createQuery("TRUNCATE TABLE Order");
+            session.createQuery("delete from Order").executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,9 +1,6 @@
 package Goods;
 
 import dao.GoodsDao;
-import db.ConnectionDB;
-import entity.Goods;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

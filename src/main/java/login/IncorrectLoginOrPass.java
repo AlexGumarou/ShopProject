@@ -14,5 +14,4 @@ public class IncorrectLoginOrPass extends HttpServlet {
         throws IOException, ServletException {
         getServletContext().getRequestDispatcher("/User/incorrectLoginOrPass.jsp").forward(request,response);
     }
-
 }

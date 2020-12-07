@@ -1,4 +1,3 @@
-<%@ page import="db.ConnectionDB" %>
 <%@ page import="dao.UserDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

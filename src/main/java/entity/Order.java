@@ -74,8 +74,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return  id +
-                "., name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", sum=" + sum + "<br>";

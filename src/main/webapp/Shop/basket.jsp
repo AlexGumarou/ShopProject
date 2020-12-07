@@ -1,4 +1,3 @@
-<%@ page import="db.ConnectionDB" %>
 <%@ page import="dao.UserDao" %>
 <%@ page import="dao.GoodsDao" %>
 <%@ page import="dao.OrderDao" %>

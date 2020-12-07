@@ -73,8 +73,7 @@ public class Goods {
 
     @Override
     public String toString() {
-        return  "id=" + id +
-                ", name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price + "<br>";

@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Orders;
 import entity.PersonalData;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

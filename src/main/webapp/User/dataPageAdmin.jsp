@@ -27,7 +27,7 @@
         <input type="submit" value="Go to the history of orders">
     </form>
     <form name="test" method="post" action="/modifyGoods">
-        <input type="submit" value="Go to modify the goods">
+        <input type="submit" value="Go to modify the Goods">
     </form>
     <form name="test" method="post" action="/">
         <input type="submit" value="Exit you account">

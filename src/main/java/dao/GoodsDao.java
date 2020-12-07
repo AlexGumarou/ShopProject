@@ -1,11 +1,9 @@
 package dao;
 
 import entity.Goods;
-import entity.PersonalData;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
-
 import java.util.List;
 
 public class GoodsDao {
@@ -50,6 +48,18 @@ public class GoodsDao {
             goods.setName(name);
             goods.setDescription(description);
             goods.setPrice(price);
+            goods.setQuantity(quantity);
+            session.update(goods);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeGoods(int id,int quantity) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Goods goods = session.get(Goods.class, id);
             goods.setQuantity(quantity);
             session.update(goods);
             session.getTransaction().commit();
