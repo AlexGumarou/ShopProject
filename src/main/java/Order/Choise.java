@@ -47,6 +47,8 @@ public class Choise extends HttpServlet {
             } else if (req.getParameter("wayOf").equals("delivery")) {
                 resp.sendRedirect("/delivery");
             }
+        } else {
+            resp.sendRedirect("/basket");
         }
     }
 }

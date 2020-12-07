@@ -76,4 +76,18 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+
+    public void setAdditionalFields(int id, String address, String email, String phone) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            PersonalData personalData = session.get(PersonalData.class, id);
+            personalData.setAddress(address);
+            personalData.setEmail(email);
+            personalData.setPhone(phone);
+            session.update(personalData);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

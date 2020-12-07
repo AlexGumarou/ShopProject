@@ -26,17 +26,6 @@ public class PersonalData {
         this.surname = surname;
     }
 
-    public PersonalData(String login, String pass, String name, String surname, String address, String email,
-                        String phone) {
-        this.login = login;
-        this.pass = pass;
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
-    }
-
     public int getId() {
         return id;
     }
