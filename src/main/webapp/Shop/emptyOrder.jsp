@@ -1,5 +1,3 @@
-<%@ page import="dao.UserDao" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
@@ -7,7 +5,7 @@
 <body>
 <div style="text-align: right;">
     <h4>Welcome,
-        <a href="/dataCheck">${name}</a></h4>
+        <a href="/dataCheck">${nameUser}</a></h4>
 </div>
 <div style="text-align: center;">
     <h3>You do not add any Goods</h3>

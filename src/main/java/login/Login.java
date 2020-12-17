@@ -25,7 +25,7 @@ public class Login extends HttpServlet{
             if (userDao.isUser(login,pass)){
                 session.setAttribute("login", userDao.getCurrentUser(login,pass).get(0).getLogin());
                 session.setAttribute("pass", userDao.getCurrentUser(login,pass).get(0).getPass());
-                session.setAttribute("name", userDao.getCurrentUser(login,pass).get(0).getName());
+                session.setAttribute("nameUser", userDao.getCurrentUser(login,pass).get(0).getName());
                 session.setAttribute("surname", userDao.getCurrentUser(login,pass).get(0).getSurname());
                 session.setAttribute("address",userDao.getCurrentUser(login,pass).get(0).getAddress());
                 session.setAttribute("email",userDao.getCurrentUser(login,pass).get(0).getEmail());

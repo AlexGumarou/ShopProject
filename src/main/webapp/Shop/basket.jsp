@@ -1,7 +1,7 @@
-<%@ page import="dao.UserDao" %>
 <%@ page import="dao.GoodsDao" %>
 <%@ page import="dao.OrderDao" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="entity.Order" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -10,7 +10,7 @@
 <body>
 <div style="text-align: right;">
     <h4>Welcome,
-        <a href="/dataCheck">${name}</a></h4>
+        <a href="/dataCheck">${nameUser}</a></h4>
 </div>
 <div style="text-align: center;">
 <%
@@ -35,11 +35,12 @@
     </tr>
     <%
     OrderDao orderDao = new OrderDao();
+    List<Order> list = orderDao.getOneOrder();
         int totalValue = 0;
-        for (int i = 0; i < orderDao.getOneOrder().size(); i++){
-            String name = orderDao.getOneOrder().get(i).getName();
-            int price = orderDao.getOneOrder().get(i).getPrice();
-            int quantity = orderDao.getOneOrder().get(i).getQuantity();
+        for (int i = 0; i < list.size(); i++){
+            String name = list.get(i).getName();
+            int price = list.get(i).getPrice();
+            int quantity = list.get(i).getQuantity();
             int sum = quantity*price;
             if (quantity>0){
             out.print("<tr><td>" + name + "</td>");

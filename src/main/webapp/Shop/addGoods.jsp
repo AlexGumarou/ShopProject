@@ -7,7 +7,7 @@
 <body>
 <div style="text-align: right;">
     <h4>Welcome,
-        <a href="/dataCheck">${name}</a></h4>
+        <a href="/dataCheck">${nameUser}</a></h4>
 </div>
 <div style="text-align: center;">
     <form name="test" method="post" action="/addGoods">

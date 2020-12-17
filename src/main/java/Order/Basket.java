@@ -14,6 +14,8 @@ public class Basket extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        OrderDao orderDao = new OrderDao();
+        req.setAttribute("listOneOrder", orderDao.getOneOrder());
         getServletContext().getRequestDispatcher("/Shop/basket.jsp").forward(req, resp);
     }
 
@@ -21,12 +23,12 @@ public class Basket extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GoodsDao goodsDao = new GoodsDao();
         OrderDao orderDao = new OrderDao();
+        req.setAttribute("listOneOrder", orderDao.getOneOrder());
         int size = goodsDao.getAllGoods().size();
         for (int i = 0; i < size; i++) {
             int quantity = goodsDao.getAllGoods().get(i).getQuantity();
             try {
                 if (quantity != 0){
-                    String b = req.getParameter("goods " + i).trim();
                     if (!req.getParameter("goods " + i).trim().equals("") && quantity > 0) {
                         int a = Integer.parseInt(req.getParameter("goods " + i));
                         if (a > quantity){
