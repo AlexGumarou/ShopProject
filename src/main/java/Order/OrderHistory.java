@@ -17,8 +17,6 @@ public class OrderHistory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDao orderDao = new OrderDao();
-
-        List<Orders> list = orderDao.getAllOrders();
         req.setAttribute("mapOrder", orderDao.getAllOrders());
         getServletContext().getRequestDispatcher("/Shop/orderHistory.jsp").forward(req,resp);
     }

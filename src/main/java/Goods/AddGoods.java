@@ -17,7 +17,7 @@ public class AddGoods extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             GoodsDao goodsDao = new GoodsDao();
             int quantity = Integer.parseInt(req.getParameter("quantity"));
