@@ -1,5 +1,7 @@
 package login;
 
+import dao.GoodsDao;
+import dao.OrderDao;
 import dao.UserDao;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,8 @@ public class Login extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         UserDao userDao = new UserDao();
+        GoodsDao goodsDao = new GoodsDao();
+        OrderDao orderDao = new OrderDao();
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
@@ -26,6 +30,10 @@ public class Login extends HttpServlet{
                 session.setAttribute("address",userDao.getCurrentUser(login,pass).get(0).getAddress());
                 session.setAttribute("email",userDao.getCurrentUser(login,pass).get(0).getEmail());
                 session.setAttribute("phone",userDao.getCurrentUser(login,pass).get(0).getPhone());
+                session.setAttribute("listOfGoods", goodsDao.getAllGoods());
+                session.setAttribute("listOfUsers", userDao.getAllUsers());
+                session.setAttribute("listOdOrder", orderDao.getOneOrder());
+                session.setAttribute("listOfOrders", orderDao.getAllOrders());
         }
         if (userDao.isUser(login,pass)){
             response.sendRedirect("/mainWindow");
