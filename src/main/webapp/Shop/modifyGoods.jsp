@@ -10,6 +10,7 @@
             <tr><td> ${item}</td>
                 </c:forEach>
         </table><td>
+
             <table border="0" align="center">
                 <tr>
                     <th>Action delete</th>
@@ -34,6 +35,7 @@
                 </c:forEach>
             </table>
     </table>
+
     <form name="test" method="get" action="/addGoods">
         <tr><td><button type="submit" >Add Goods</button></td>
     </form>
