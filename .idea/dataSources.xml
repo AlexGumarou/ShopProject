@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="webtest@localhost" uuid="374d5058-4ef7-4c2f-a316-8376e3a4cbe4">
+    <data-source source="LOCAL" name="webtestconnections@localhost" uuid="374d5058-4ef7-4c2f-a316-8376e3a4cbe4">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/webtest?serverTimezone=UTC</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="snjv3tbhkdt9rr96@n2o93bb1bwmn0zle.chr7pe7iynqr.eu-west-1.rds.amazonaws.com" uuid="f15e0f41-abea-4c43-8d29-c71340822762">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://n2o93bb1bwmn0zle.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/snjv3tbhkdt9rr96</jdbc-url>
     </data-source>
   </component>
 </project>
